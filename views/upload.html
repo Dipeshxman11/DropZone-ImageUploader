@@ -10,8 +10,24 @@
 </head>
 <body>
   <h1>Upload Images</h1>
+  <button id="logout">Logout</button>
   <form action="/upload" class="dropzone" id="my-dropzone"></form>
   <!-- Dropzone.js library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
+  <script>
+    const logoutButton = document.getElementById('logout');
+    logoutButton.addEventListener('click', () => {
+      fetch('/logout', {
+        method: 'POST',
+        credentials: 'same-origin'
+      })
+      .then(() => {
+        window.location.href = '/'; 
+      })
+      .catch((error) => {
+        console.error('Logout failed:', error);
+      });
+    });
+  </script>
 </body>
 </html>
